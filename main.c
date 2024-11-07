@@ -4,12 +4,11 @@
 extern bool es_palindromo(const char *cadena);
 
 char* crear_label(const char *cadena) {
-    // if (es_palindromo(cadena)) {
-    //     return g_strdup_printf("La cadena \"%s\" es un palíndromo", cadena);
-    // } else {
-    //     return g_strdup_printf("La cadena \"%s\" no es un palíndromo", cadena);
-    // }
-    return "test";
+    if (es_palindromo(cadena)) {
+        return g_strdup_printf("La cadena \"%s\" es un palíndromo", cadena);
+    } else {
+        return g_strdup_printf("La cadena \"%s\" no es un palíndromo", cadena);
+    }
 }
 
 void mostrar_resultado(GtkWidget *widget, gpointer data)
