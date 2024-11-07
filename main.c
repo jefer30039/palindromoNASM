@@ -3,7 +3,10 @@
 
 extern bool es_palindromo(const char *cadena);
 
-char* crear_label(const char *cadena) {
+char* crear_label(gpointer data){
+    const char *cadena = gtk_entry_get_text(GTK_ENTRY(data));
+    //obtener el tamano de cadena
+    //int length = sizeof(cadena);
     if (es_palindromo(cadena)) {
         return g_strdup_printf("La cadena \"%s\" es un palíndromo", cadena);
     } else {
@@ -50,8 +53,6 @@ int main (int argc, char *argv[])
 
     //cuadro de texto para ingresar el año
     entry = gtk_entry_new();
-    gtk_entry_set_max_length(GTK_ENTRY(entry), 4);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry), 4);
     gtk_widget_set_halign(entry, GTK_ALIGN_CENTER);
     gtk_widget_set_valign(entry, GTK_ALIGN_END);
     gtk_widget_set_size_request(entry, 150, 30);
