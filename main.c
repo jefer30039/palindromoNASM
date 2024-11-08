@@ -5,12 +5,10 @@ extern bool es_palindromo(const char *cadena);
 
 char* crear_label(gpointer data){
     const char *cadena = gtk_entry_get_text(GTK_ENTRY(data));
-    //obtener el tamano de cadena
-    //int length = sizeof(cadena);
     if (es_palindromo(cadena)) {
-        return g_strdup_printf("La cadena \"%s\" es un palíndromo", cadena);
+        return g_strdup_printf("\"%s\" es un palíndromo", cadena);
     } else {
-        return g_strdup_printf("La cadena \"%s\" no es un palíndromo", cadena);
+        return g_strdup_printf("\"%s\" no es un palíndromo", cadena);
     }
 }
 
