@@ -1,14 +1,34 @@
 #include <gtk/gtk.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 extern bool es_palindromo(const char *cadena);
 
 char* crear_label(gpointer data){
-    const char *cadena = gtk_entry_get_text(GTK_ENTRY(data));
+    const char *cadena_const = gtk_entry_get_text(GTK_ENTRY(data));
+
+    //elimina los espacios en la cadena
+    char *cadena = g_strdup(cadena_const);
+    char *p = cadena;
+    char *q = p;
+    while (*q) {
+        if (*q != ' ') {
+            *p = *q;
+            p++;
+        }
+        q++;
+    }
+    *p = '\0';
+
+    //convierte la cadena a minúsculas
+    for (int i = 0; cadena[i]; i++) {
+        cadena[i] = tolower(cadena[i]);
+    }
+
     if (es_palindromo(cadena)) {
-        return g_strdup_printf("\"%s\" es un palíndromo", cadena);
+        return g_strdup_printf("\"%s\" es un palíndromo", cadena_const);
     } else {
-        return g_strdup_printf("\"%s\" no es un palíndromo", cadena);
+        return g_strdup_printf("\"%s\" no es un palíndromo", cadena_const);
     }
 }
 
@@ -78,7 +98,6 @@ int main (int argc, char *argv[])
     gtk_widget_show_all(window);
 
     gtk_main();
-
     return 0;
 }
 
